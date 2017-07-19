@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Movement;
+use Auth;
 
 class MovementController extends Controller
 {
@@ -34,7 +36,18 @@ class MovementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newMovement = new Movement();
+        $newMovement->description = $request->input('description');
+        $newMovement->value = $request->input('value');
+        $newMovement->type = $request->input('type');
+        $newMovement->date = $request->input('date');
+        $newMovement->account_id = $request->input('account');
+        $newMovement->user_id = Auth::user()->id;        
+        $newMovement->save();
+            
+        return redirect()->action(
+            'AccountController@show', ['id' => $request->input('account')]
+        );
     }
 
     /**

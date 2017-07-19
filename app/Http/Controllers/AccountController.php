@@ -56,6 +56,7 @@ class AccountController extends Controller
     public function show($id)
     {
         $account = Account::find($id);
+
         return view('account.manage')->with('account', $account);
     }
 
