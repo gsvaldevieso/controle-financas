@@ -17,16 +17,45 @@
                     </div>
                 @endif
                     <form class="form-horizontal" method="POST" action="/account/">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="agency">Agência:</label>
+                                <input class="form-control" type="text" name="agency" autofocus>
+                            </div>    
+                            <div class="col-md-3">
+                                <label for="number">Número da conta:</label>
+                                <input class="form-control" type="text" name="number">        
+                            </div>
+                            <div class="col-md-6">
+                                <label for="bank">Banco:</label>                                
+                                <select class="form-control" name="bank">
+                                    <option value="Itaú">Itaú</option>
+                                    <option value="Banco do Brasil">Banco do Brasil</option>
+                                    <option value="Bradesco">Bradesco</option>
+                                    <option value="Caixa Econômica Federal">Caixa Econômica Federal</option>
+                                    <option value="BNDES">BNDES</option>
+                                    <option value="Santander">Santander</option>
+                                    <option value="HSBC">HSBC</option>
+                                    <option value="Banco Safra">Banco Safra</option>
+                                    <option value="Banco Votorantim">Banco Votorantim</option>
+                                    <option value="Banrisul">Banrisul</option>
+                                    <option value="Citibank">Citibank</option>
+                                    <option value="Banco do Nordeste">Banco do Nordeste</option>
+                                </select>    
+                            </div>
+                            <div class="col-md-6">
+                                <label for="owner">Titular:</label>
+                                <input class="form-control" type="text" name="owner">       
+                            </div>
+                        </div>
                         {{ csrf_field() }}
-                        <label for="number">Agência:</label>
-                        <input class="form-control" type="text" name="agency">
-                        <label for="number">Número da conta:</label>
-                        <input class="form-control" type="text" name="number">
-                        <label for="number">Banco:</label>
-                        <input class="form-control" type="text" name="bank">
-                        <label for="number">Titular:</label>
-                        <input class="form-control" type="text" name="owner">
-                        <input class="btn btn-primary" type="submit" value="Criar conta">
+                        <div class="row">
+                            <div class="col-md-6">
+                            <br>
+                                <input class="btn btn-primary" type="submit" value="Criar conta">    
+                            </div>
+                        </div>
+                        
                     </form>
                 </div>
             </div>

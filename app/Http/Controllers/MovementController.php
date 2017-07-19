@@ -99,6 +99,6 @@ class MovementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Movement::find($id)->delete();
     }
 }
