@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Account;
+use Auth;
 
 class AccountController extends Controller
 {
@@ -23,7 +25,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        return view('account.create');
     }
 
     /**
@@ -34,7 +36,15 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newAccount = new Account();
+        $newAccount->agency = $request->input('agency');
+        $newAccount->number = $request->input('number');
+        $newAccount->bank = $request->input('bank');
+        $newAccount->owner = $request->input('owner');
+        $newAccount->user_id = Auth::user()->id;
+        $newAccount->save();
+
+        return redirect()->action('HomeController@index');
     }
 
     /**
@@ -45,7 +55,8 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        $account = Account::find($id);
+        return view('account.manage')->with('account', $account);
     }
 
     /**

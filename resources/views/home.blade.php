@@ -10,16 +10,20 @@
                 <div class="panel-body">
                     <h4>Suas contas</h4>
                     <hr>
-                    <a class="btn btn-primary">
-                        <b>Número: 13123123-123</b>
-                        <br>
-                        <b>Banco: Itaú</b>
-                        <br>
-                        Titular: Guilherme Soares Valdevieso
-                        <br>
-                        Saldo: R$ 10,00
-                    </a>
-                    <a class="btn btn-success">
+                    @foreach($accounts as $account)
+                        <a href="/account/{{$account->id}}" class="btn btn-primary">
+                            <b>Agência {{$account->agency}} </b>
+                            <br>
+                            <b>Número: {{$account->number}}</b>
+                            <br>
+                            <b>Banco: {{$account->bank}}</b>
+                            <br>
+                            Titular: {{$account->owner}}
+                            <br>
+                            Saldo: R$ 0,00
+                        </a>
+                    @endforeach
+                    <a href="/account/create" class="btn btn-success">
                         <h1>+</h1>
                     </a>
                 </div>
