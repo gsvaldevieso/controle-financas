@@ -11,20 +11,20 @@
                     <h4>Suas contas</h4>
                     <hr>
                     @foreach($accounts as $account)
-                        <a href="/account/{{$account->id}}" class="btn btn-primary">
-                            <b>Agência {{$account->agency}} </b>
+                        <a href="/account/{{$account->id}}" class="btn btn-{{$account->balance() < 10 ? 'danger' : 'primary'}}">
+                            <b>Agência</b> {{$account->agency}} 
                             <br>
-                            <b>Número: {{$account->number}}</b>
+                            <b>Número:</b> {{$account->number}}
                             <br>
-                            <b>Banco: {{$account->bank}}</b>
+                            <b>Banco:</b> {{$account->bank}}
                             <br>
-                            Titular: {{$account->owner}}
+                            <b>Titular:</b> {{$account->owner}}
                             <br>
-                            Saldo: R$ 0,00
+                            <b>Saldo:</b> R$ {{ number_format($account->balance(), 2, ',', '.' ) }}
                         </a>
                     @endforeach
-                    <a href="/account/create" class="btn btn-success">
-                        <h1>+</h1>
+                    <a href="/account/create" class="btn">
+                        <h1 class="green">+</h1>
                     </a>
                 </div>
 

@@ -7,6 +7,15 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Adicionar nova conta</div>
                 <div class="panel-body">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                     <form class="form-horizontal" method="POST" action="/account/">
                         {{ csrf_field() }}
                         <label for="number">Agência:</label>

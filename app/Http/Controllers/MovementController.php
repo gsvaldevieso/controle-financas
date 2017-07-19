@@ -36,6 +36,13 @@ class MovementController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'description' => 'required',
+            'value' => 'required',
+            'type' => 'required',
+            'date' => 'required'
+        ]);
+
         $newMovement = new Movement();
         $newMovement->description = $request->input('description');
         $newMovement->value = $request->input('value');
@@ -44,7 +51,7 @@ class MovementController extends Controller
         $newMovement->account_id = $request->input('account');
         $newMovement->user_id = Auth::user()->id;        
         $newMovement->save();
-            
+
         return redirect()->action(
             'AccountController@show', ['id' => $request->input('account')]
         );

@@ -36,6 +36,13 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'agency' => 'required',
+            'number' => 'required',
+            'bank' => 'required',
+            'owner' => 'required'
+        ]);
+
         $newAccount = new Account();
         $newAccount->agency = $request->input('agency');
         $newAccount->number = $request->input('number');
@@ -56,7 +63,6 @@ class AccountController extends Controller
     public function show($id)
     {
         $account = Account::find($id);
-
         return view('account.manage')->with('account', $account);
     }
 

@@ -50,13 +50,13 @@
                                 <tr>
                                     <td><span class="glyphicon glyphicon-{{ $movement->type === 'EN' ? 'plus-sign' : 'minus-sign'}}" aria-hidden="true"></span></td>
                                     <td>{{ $movement->description }}</td>
-                                    <td>R$ {{money_format('%n', $movement->value ) }}</td>
-                                    <td>{{ $movement->date }}</td>
+                                    <td>R$ {{ number_format($movement->value, 2, ',', '.' ) }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($movement->date)) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <h4>Saldo atual: R$ {{ money_format('%n', $account->balance() ) }}</h4>
+                    <h4>Saldo atual: R$ {{ number_format($account->balance(), 2, ',', '.' ) }}</h4>
                 </div>
             </div>
         </div>

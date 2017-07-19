@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Account;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $accounts = Account::all();
+        $accounts = Account::where('user_id', Auth::user()->id)->cursor();
+        
         return view('home')->with('accounts', $accounts);
     }
 }
