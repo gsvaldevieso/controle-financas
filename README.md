@@ -10,8 +10,8 @@ Configure no arquivo .env o novo arquivo criado
 Navegue até a pasta onde os arquivos install e execute:
 
 > composer install
-php artisan migrate
-php artisan serve
+> php artisan migrate
+> php artisan serve
 
 Pronto!
 
