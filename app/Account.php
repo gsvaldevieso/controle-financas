@@ -12,6 +12,15 @@ class Account extends Model
         return $this->hasMany('App\Movement');
     }
 
+    public function movementsByMonth($month)
+    {
+        $movements = Movement::where('account_id', $this->id)
+                             ->whereMonth('date', '=', str_pad($month, 2, "0", STR_PAD_LEFT))
+                             ->orderBy('date', 'desc')
+                             ->get();
+        return $movements;
+    }
+
     public function balance()
     {
         $movements = $this->movements;

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="panel panel-default">
                 <div class="panel-heading">Novo lançamento para {{$account->agency}}/{{$account->number}}</div>
                 <div class="panel-body">
@@ -22,7 +22,7 @@
                                 <label for="date">Data:</label>
                                 <input class="form-control" type="date" name="date" value="<?php echo date("Y-m-d"); ?>">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <label for="type">Tipo:</label>
                                 <div class="input-group">
                                     <input type="radio" name="type" value="EN" checked> Entrada
@@ -41,9 +41,9 @@
                     <div class="row">
                         <form method="GET">
                             <div class="col-md-12">
-                                <h4 class="page-header">Filtro</h4>
+                                <h4 class="page-header">Filtros</h4>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <label for="filtro">Mês</label>
                                 <select class="form-control" name="mes">
                                     <option value="1">Janeiro</option>
@@ -60,18 +60,24 @@
                                     <option value="12">Dezembro</option>
                                 </select>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-6">
                                 <br>
-                                <input class="btn btn-success" type="submit" value="Filtrar">
-                            </div>    
+                                <input style="width:100%" class="btn btn-success" type="submit" value="Filtrar">
+                            </div>  
                         </form>
+                            <div class="col-md-6">
+                                <form method="GET">
+                                    <br>
+                                    <input  style="width:100%" class="btn btn-danger" type="submit" value="Limpar">
+                                </form>
+                            </div> 
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">Últimos lançamentos ({{$account->movements->count()}})</div>
+                <div class="panel-heading">Últimos lançamentos do mês de {{$monthDescription}} ({{count($movements)}})</div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
@@ -82,7 +88,7 @@
                             <th></th>
                         </thead>
                         <tbody>
-                            @foreach ($account->movements as $movement)
+                            @foreach ($movements as $movement)
                                 <tr>
                                     <td><span class="glyphicon glyphicon-{{ $movement->type === 'EN' ? 'arrow-up text-success' : 'arrow-down text-danger'}}" aria-hidden="true"></span></td>
                                     <td>{{ $movement->description }}</td>

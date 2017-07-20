@@ -32,6 +32,11 @@
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Controle de Finanças') }}
+                        @if (Auth::guest())
+                            <small> {{date('Y')}}</small>
+                        @else
+                            <small> de {{ Auth::user()->name }}</small>
+                        @endif
                     </a>
                 </div>
 
@@ -49,26 +54,25 @@
                             <li><a href="{{ route('register') }}">Registrar-se</a></li>
                         @else
                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li><a href="{{ route('home') }}">Minhas Contas</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
+                        <li><a href="{{ route('home') }}">Minhas Contas</a></li>
+                         <li>
+                                <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Sair
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
-                                </ul>
                             </li>
+<!--                             <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a> -->
+
+
+                            <!-- </li> -->
                         @endif
                     </ul>
                 </div>

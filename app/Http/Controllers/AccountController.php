@@ -60,10 +60,38 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         $account = Account::find($id);
-        return view('account.manage')->with('account', $account);
+
+        $monthDescriptions = array(
+            1 => "Janeiro",
+            2 => "Fevereiro",
+            3 => "Março",
+            4 => "Abril",
+            5 => "Maio",
+            6 => "Junho",
+            7 => "Julho",
+            8 => "Agosto",
+            9 => "Setembro",
+            10 => "Outubro",
+            11 => "Novembro",
+            12 => "Dezembro"
+        );
+
+        $mes = $request->input('mes');
+
+        if ($mes) {
+            $movements = $account->movementsByMonth($mes);
+            $monthDescription = $monthDescriptions[$mes];
+        }else{
+            $movements = $account->movements;
+            $monthDescription = $monthDescriptions[intval(date('m'))];
+        }
+        
+        return view('account.manage')->with('account', $account)
+                                     ->with('movements', $movements)
+                                     ->with('monthDescription', $monthDescription);
     }
 
     /**
