@@ -51,12 +51,8 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Acessar
+                                    Acessar minha conta
                                 </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Esqueceu sua senha?
-                                </a>
                             </div>
                         </div>
                     </form>

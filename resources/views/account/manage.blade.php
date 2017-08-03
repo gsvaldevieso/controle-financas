@@ -24,9 +24,14 @@
                             </div>
                             <div class="col-md-12">
                                 <label for="type">Tipo:</label>
-                                <div class="input-group">
-                                    <input type="radio" name="type" value="EN" checked> Entrada
-                                    <input type="radio" name="type" value="SA"> Saída
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <input type="radio" name="type" value="EN" checked> Entrada
+                                            
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="radio" name="type" value="SA"> Saída    
+                                        </div>
                                 </div>                                
                             </div>
                         </div>
