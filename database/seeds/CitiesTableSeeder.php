@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\City;
 
-class cities_table_seeder extends Seeder
+class CitiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,7 @@ class cities_table_seeder extends Seeder
      */
     public function run()
     {
-        DB::table('cities')->delete();
+DB::table('cities')->delete();
 
         City::create(['state_id' => 1, 'ibge_code' => '1200013', 'name' => 'Acrelândia']);
         City::create(['state_id' => 1, 'ibge_code' => '1200054', 'name' => 'Assis Brasil']);
@@ -5604,5 +5605,6 @@ class cities_table_seeder extends Seeder
         City::create(['state_id' => 27, 'ibge_code' => '1721307', 'name' => "Tupiratins"]);
         City::create(['state_id' => 27, 'ibge_code' => '1722081', 'name' => "Wanderlândia"]);
         City::create(['state_id' => 27, 'ibge_code' => '1722107', 'name' => "Xambioá"]);
+
     }
 }

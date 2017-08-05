@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\State;
 
-class states_table_seeder extends Seeder
+class StatesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -19,5 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/cities/{state}', 'CitiesController@getState')->name('cities_in_state');
 Route::resource('/account', 'AccountController');
 Route::resource('/movement', 'MovementController');

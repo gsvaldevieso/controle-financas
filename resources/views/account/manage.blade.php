@@ -14,11 +14,11 @@
                                 <label for="description">Descrição:</label>
                                 <input class="form-control" data-provide="typeahead" type="text" name="description" autofocus>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <label for="value">Valor:</label>
                                 <input class="form-control" type="number" step="0.01" id="value" name="value">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <label for="date">Data:</label>
                                 <input class="form-control" type="date" name="date" value="<?php echo date("Y-m-d"); ?>">
                             </div>

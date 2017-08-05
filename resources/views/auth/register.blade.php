@@ -38,6 +38,41 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }}">
+                            <label for="state" class="col-md-4 control-label">Estado</label>
+
+                            <div class="col-md-6">
+                                <!-- <input id="state" type="state" class="form-control" name="state" value="{{ old('state') }}" required> -->
+
+                                <select id="state" class="form-control" name="state">
+                                    @foreach ($states as $state)
+                                        <option value="{{$state->id}}">{{$state->name}}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('state'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('state') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
+                            <label for="city" class="col-md-4 control-label">Cidade</label>
+
+                            <div class="col-md-6">
+                                <select id="city" class="form-control" name="city">
+                                    
+                                </select>
+
+                                @if ($errors->has('city'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('city') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Senha</label>
 
@@ -74,3 +109,20 @@
     </div>
 </div>
 @endsection
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#state').on('change', function(){
+            $.getJSON('/cities/' + $(this).val(), function(cidades){
+                $('#city').html('');
+
+                for(var i = 0; i < cidades.length; i++){
+                    var cidadeAtual = cidades[i];
+                    var option = "<option value='" + cidadeAtual.id + "'>"+cidadeAtual.name+"</option>";
+                    $('#city').append(option);
+                }
+            });
+        });
+    });
+</script>
+
