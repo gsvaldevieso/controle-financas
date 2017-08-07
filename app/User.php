@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Account;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -26,4 +28,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function getAllAccounts()
+    {
+        return Account::where('user_id', Auth::id())->get();
+    }
 }
