@@ -50,8 +50,15 @@
                             </div>
                             <div class="col-md-12">
                                 <label for="filtro">Mês</label>
-                                <select class="form-control" name="mes">
-                                    <option value="1">Janeiro</option>
+                                <select class="form-control" name="month">
+                                    @foreach ($monthDescriptions as $monthNum => $monthDesc)
+                                        @if($monthNum == $month)
+                                            <option value="{{$monthNum}}" selected="selected">{{$monthDesc}}</option>
+                                        @else
+                                            <option value="{{$monthNum}}">{{$monthDesc}}</option>
+                                        @endif
+                                    @endforeach
+                                    <!-- <option value="1">Janeiro</option>
                                     <option value="2">Fevereiro</option>
                                     <option value="3">Março</option>
                                     <option value="4">Abril</option>
@@ -62,7 +69,7 @@
                                     <option value="9">Setembro</option>
                                     <option value="10">Outubro</option>
                                     <option value="11">Novembro</option>
-                                    <option value="12">Dezembro</option>
+                                    <option value="12">Dezembro</option> -->
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -104,7 +111,8 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <h4>Saldo atual: R$ {{ number_format($account->balance(), 2, ',', '.' ) }}</h4>
+                    <h4 class="col-md-6">Saldo mensal: R$ {{ number_format($account->balanceInMonth($month), 2, ',', '.' ) }}</h4>
+                    <h4 class="col-md-6">Saldo total da conta: R$ {{ number_format($account->balance($month), 2, ',', '.' ) }}</h4>
                 </div>
             </div>
         </div>

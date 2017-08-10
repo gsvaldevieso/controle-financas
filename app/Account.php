@@ -38,4 +38,27 @@ class Account extends Model
 
         return $balance;
     }
+
+    public function balanceInMonth($month)
+    {
+        $movements = $this->movements;
+        $balance = 0.0;
+
+        foreach($movements as $movement)
+        {
+            $movementMonth = date('m', strtotime($movement->date));
+            $movementYear = date('Y', strtotime($movement->date));
+            if($movementMonth != $month || $movementYear != date('Y'))
+                continue;
+
+            if($movement->type === 'EN'){
+                $balance += $movement->value;
+                continue;
+            }
+            
+            $balance -= $movement->value;
+        }
+
+        return $balance;
+    }
 }

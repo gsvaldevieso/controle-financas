@@ -79,11 +79,11 @@ class AccountController extends Controller
             12 => "Dezembro"
         );
 
-        $mes = $request->input('mes');
+        $month = $request->input('month') ?? intval(date('m'));
 
-        if ($mes) {
-            $movements = $account->movementsByMonth($mes);
-            $monthDescription = $monthDescriptions[$mes];
+        if ($month) {
+            $movements = $account->movementsByMonth($month);
+            $monthDescription = $monthDescriptions[$month];
         }else{
             $movements = $account->movements;
             $monthDescription = $monthDescriptions[intval(date('m'))];
@@ -91,7 +91,9 @@ class AccountController extends Controller
         
         return view('account.manage')->with('account', $account)
                                      ->with('movements', $movements)
-                                     ->with('monthDescription', $monthDescription);
+                                     ->with('monthDescriptions', $monthDescriptions)
+                                     ->with('monthDescription', $monthDescription)
+                                     ->with('month', $month);
     }
 
     /**
