@@ -52,8 +52,14 @@ class MovementController extends Controller
         $newMovement->user_id = Auth::user()->id;        
         $newMovement->save();
 
+        $parsedDate = date_parse_from_format("Y-m-d", $newMovement->date);
+
         return redirect()->action(
-            'AccountController@show', ['id' => $request->input('account')]
+            'AccountController@show', 
+            [
+                'id' => $request->input('account'),
+                'month' => $parsedDate['month']
+            ]
         );
     }
 
