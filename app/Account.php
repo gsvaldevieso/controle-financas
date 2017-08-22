@@ -12,6 +12,21 @@ class Account extends Model
         return $this->hasMany('App\Movement');
     }
 
+    public function getAllDescriptionsFromMovementsInAccount()
+    {
+        $movements = Movement::where('account_id', $this->id)
+                             ->orderBy('date', 'desc')
+                             ->get();
+        
+        $movementsDescriptions = [];
+
+        foreach ($movements as $movement) {
+            $movementsDescriptions[$movement->description] = null;
+        }
+        
+        return $movementsDescriptions;   
+    }
+
     public function movementsByMonth($month)
     {
         $movements = Movement::where('account_id', $this->id)

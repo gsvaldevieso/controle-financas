@@ -18,15 +18,15 @@
                 @endif
                     <form class="form-horizontal" method="POST" action="/account/">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col m6">
                                 <label for="agency">Agência:</label>
                                 <input class="form-control" type="text" name="agency" autofocus>
                             </div>    
-                            <div class="col-md-3">
+                            <div class="col m6">
                                 <label for="number">Número da conta:</label>
                                 <input class="form-control" type="text" name="number">        
                             </div>
-                            <div class="col-md-6">
+                            <div class="col m6">
                                 <label for="bank">Banco:</label>                                
                                 <select class="form-control" name="bank">
                                     <option value="Itaú">Itaú</option>
@@ -43,7 +43,7 @@
                                     <option value="Banco do Nordeste">Banco do Nordeste</option>
                                 </select>    
                             </div>
-                            <div class="col-md-6">
+                            <div class="col m6">
                                 <label for="owner">Titular:</label>
                                 <input class="form-control" type="text" name="owner">       
                             </div>
@@ -52,7 +52,7 @@
                         <div class="row">
                             <div class="col-md-6">
                             <br>
-                                <input class="btn btn-primary" type="submit" value="Criar conta">    
+                                <input class="btn blue" type="submit" value="Criar conta">    
                             </div>
                         </div>
                         

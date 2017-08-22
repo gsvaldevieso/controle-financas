@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col m4">
             <div class="panel panel-default">
                 <div class="panel-heading">Novo lançamento para {{$account->agency}}/{{$account->number}}</div>
                 <div class="panel-body">
@@ -12,7 +11,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="description">Descrição:</label>
-                                <input class="form-control" data-provide="typeahead" type="text" name="description" autofocus>
+                                <input class="form-control autocomplete" data-provide="typeahead" type="text" name="description" data-length="60" autofocus autocomplete="off">
                             </div>
                             <div class="col-md-5">
                                 <label for="value">Valor:</label>
@@ -25,20 +24,21 @@
                             <div class="col-md-12">
                                 <label for="type">Tipo:</label>
                                     <div class="row">
-                                        <div class="col-md-4">
-                                            <input type="radio" name="type" value="EN" checked> Entrada
-                                            
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="radio" name="type" value="SA"> Saída    
-                                        </div>
+                                    <div class="col m6">
+                                      <input name="groupType" type="radio" id="type_en" name="type" checked/>
+                                      <label for="type_en">Entrada</label>
+                                    </div>
+                                    <div class="col m6">
+                                      <input name="groupType" type="radio" id="type_sa" name="type"/>
+                                      <label for="type_sa">Saída</label>
+                                    </div>
                                 </div>                                
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <br>
-                                <input style="width:100%;" class="btn btn-primary" type="submit" value="Lançar">
+                                <input style="width:100%;" class="btn blue" type="submit" value="Lançar">
                             </div>
                         </div>
                         <input type="hidden" name="account" value="{{$account->id}}">
@@ -46,7 +46,7 @@
                     <div class="row">
                         <form method="GET">
                             <div class="col-md-12">
-                                <h4 class="page-header">Filtros</h4>
+                                <p>Filtros</p>
                             </div>
                             <div class="col-md-12">
                                 <label for="filtro">Mês</label>
@@ -58,29 +58,17 @@
                                             <option value="{{$monthNum}}">{{$monthDesc}}</option>
                                         @endif
                                     @endforeach
-                                    <!-- <option value="1">Janeiro</option>
-                                    <option value="2">Fevereiro</option>
-                                    <option value="3">Março</option>
-                                    <option value="4">Abril</option>
-                                    <option value="5">Maio</option>
-                                    <option value="6">Junho</option>
-                                    <option value="7">Julho</option>
-                                    <option value="8">Agosto</option>
-                                    <option value="9">Setembro</option>
-                                    <option value="10">Outubro</option>
-                                    <option value="11">Novembro</option>
-                                    <option value="12">Dezembro</option> -->
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <br>
-                                <input style="width:100%" class="btn btn-success" type="submit" value="Filtrar">
+                            <div class="col m6">
+                            <br>
+                                <input style="width:100%" class="btn green" type="submit" value="Filtrar">
                             </div>  
                         </form>
                             <div class="col-md-6">
                                 <form method="GET">
                                     <br>
-                                    <input  style="width:100%" class="btn btn-danger" type="submit" value="Limpar">
+                                    <input  style="width:100%" class="btn red" type="submit" value="Limpar">
                                 </form>
                             </div> 
                     </div>
@@ -111,13 +99,12 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <h4 class="col-md-6">Saldo mensal: R$ {{ number_format($account->balanceInMonth($month), 2, ',', '.' ) }}</h4>
-                    <h4 class="col-md-6">Saldo total da conta: R$ {{ number_format($account->balance($month), 2, ',', '.' ) }}</h4>
+                    <h5 class="col m6">Saldo mensal: R$ {{ number_format($account->balanceInMonth($month), 2, ',', '.' ) }}</h5>
+                    <h5 class="col m6">Saldo total da conta: R$ {{ number_format($account->balance($month), 2, ',', '.' ) }}</h5>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <script type="text/javascript">
     var deleteMovement = function(movementId){
@@ -133,6 +120,17 @@
             success: function(result) {
                 location.reload();
             }
+        });
+    }
+
+    window.onload = function()
+    {
+        $('input.autocomplete').autocomplete({
+            data: {!! $movementsDescriptions !!},
+            limit: 10, 
+            onAutocomplete: function(val) {
+            },
+            minLength: 3
         });
     }
 </script>

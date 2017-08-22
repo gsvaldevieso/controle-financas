@@ -89,11 +89,14 @@ class AccountController extends Controller
             $monthDescription = $monthDescriptions[intval(date('m'))];
         }
         
+        $movementsDescriptions = json_encode(($account->getAllDescriptionsFromMovementsInAccount()), JSON_FORCE_OBJECT|JSON_UNESCAPED_UNICODE);
+
         return view('account.manage')->with('account', $account)
                                      ->with('movements', $movements)
                                      ->with('monthDescriptions', $monthDescriptions)
                                      ->with('monthDescription', $monthDescription)
-                                     ->with('month', $month);
+                                     ->with('month', $month)
+                                     ->with('movementsDescriptions', $movementsDescriptions);
     }
 
     /**
