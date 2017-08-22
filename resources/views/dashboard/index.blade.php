@@ -3,13 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col m12">
             <div class="panel panel-default">
                 <div class="panel-heading">Relatórios</div>
                 	<div class="panel-body">
                 		<div class="row">
                 			<div class="col-md-12">
-                				<h5 class="page-header">Últimos lançamentos que você realizou</h5>		
+                				<h5>Últimos lançamentos que você realizou</h5>		
                 			</div>	
                 			<div class="col-md-12">
                 				<table class="table">
@@ -28,7 +28,7 @@
                 		</div>
                 		<div class="row">
                 			<div class="col-md-12">
-                				<h5 class="page-header">Balanço atual de suas contas</h5>		
+                				<h5>Balanço atual de suas contas</h5>		
                 			</div>	
                 			<div class="col-md-12">
                 				<table class="table">
@@ -54,7 +54,7 @@
                 		</div>
 						<div class="row">
                 			<div class="col-md-12">
-                				<h5 class="page-header">Maiores entradas em suas contas</h5>
+                				<h5>Maiores entradas em suas contas</h5>
                 			</div>	
                 			<div class="col-md-12">
                 				<table class="table">
@@ -76,7 +76,7 @@
                 		</div>
 						<div class="row">
                 			<div class="col-md-12">
-                				<h5 class="page-header">Maiores débitos em suas contas</h5>		
+                				<h5>Maiores débitos em suas contas</h5>		
                 			</div>	
                 			<div class="col-md-12">
                 				<table class="table">

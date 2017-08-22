@@ -25,11 +25,11 @@
                                 <label for="type">Tipo:</label>
                                     <div class="row">
                                     <div class="col m6">
-                                      <input name="groupType" type="radio" id="type_en" name="type" checked/>
+                                      <input name="type" value="EN" type="radio" id="type_en" checked/>
                                       <label for="type_en">Entrada</label>
                                     </div>
                                     <div class="col m6">
-                                      <input name="groupType" type="radio" id="type_sa" name="type"/>
+                                      <input name="type" value="SA" type="radio" id="type_sa" />
                                       <label for="type_sa">Saída</label>
                                     </div>
                                 </div>                                
@@ -106,6 +106,8 @@
         </div>
     </div>
 
+
+
 <script type="text/javascript">
     var deleteMovement = function(movementId){
         $.ajaxSetup({
@@ -131,6 +133,12 @@
             onAutocomplete: function(val) {
             },
             minLength: 3
+        });
+
+        $('.table').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Portuguese-Brasil.json"
+            }
         });
     }
 </script>
