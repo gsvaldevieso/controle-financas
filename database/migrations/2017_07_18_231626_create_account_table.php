@@ -18,10 +18,13 @@ class CreateAccountTable extends Migration
             $table->string('number');
             $table->string('bank');
             $table->string('owner');            
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
+
+	Schema::table('accounts', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+	});
     }
 
     /**

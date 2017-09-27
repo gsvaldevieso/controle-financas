@@ -14,9 +14,12 @@ class AddAccountToMovementTable extends Migration
     public function up()
     {
         Schema::table('movements', function (Blueprint $table) {
-            $table->integer('account_id')->default('');
-            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->integer('account_id')->unsigned()->nullable();
         });
+
+	Schema::table('movements', function (Blueprint $table) {
+            $table->foreign('account_id')->references('id')->on('accounts');
+	});
     }
 
     /**

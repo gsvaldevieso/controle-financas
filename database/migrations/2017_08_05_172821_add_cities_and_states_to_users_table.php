@@ -14,11 +14,14 @@ class AddCitiesAndStatesToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('state_id')->default('');
-            $table->foreign('state_id')->references('id')->on('states');
-            $table->integer('city_id')->default('');
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->integer('state_id')->unsigned()->nullable();
+            $table->integer('city_id')->unsigned()->nullable();
         });
+	
+	Schema::table('users', function (Blueprint $table) {
+            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('state_id')->references('id')->on('states');
+	});
     }
 
     /**

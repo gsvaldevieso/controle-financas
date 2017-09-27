@@ -19,10 +19,13 @@ class CreateMovementTable extends Migration
             $table->decimal('value', 6, 2);
             $table->char('type', 2);
             $table->date('date');
-            $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
+	
+	Schema::table('movements', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+	});
     }
 
     /**
